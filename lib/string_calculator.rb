@@ -4,7 +4,12 @@ class StringCalculator
       return 0 if numbers.empty?
 
       delimiter, numbers = extract_delimiter_and_numbers(numbers)
-      numbers.split(/#{delimiter}/).map(&:to_i).sum
+      nums = numbers.split(/#{delimiter}/).map(&:to_i)
+
+      negatives = nums.select { |n| n < 0 }
+      raise ArgumentError, "negative numbers not allowed: #{negatives.join(', ')}" unless negatives.empty?
+
+      nums.sum
     end
 
     def extract_delimiter_and_numbers(numbers)
@@ -12,7 +17,7 @@ class StringCalculator
 
       if numbers.start_with?('//')
         parts = numbers.split("\n", 2)
-        delimiter_definition = parts[0] 
+        delimiter_definition = parts[0]
         numbers = parts[1]
         custom_delimiter = Regexp.escape(delimiter_definition[2..])
         return [custom_delimiter, numbers]
