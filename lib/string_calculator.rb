@@ -12,6 +12,8 @@ class StringCalculator
       nums.sum
     end
 
+    # method to extract delimiter and numbers array
+
     def extract_delimiter_and_numbers(numbers)
       default_delimiter = /,|\\n/
 
@@ -31,7 +33,8 @@ end
 # console application
 if __FILE__ == $0
   puts 'Enter numbers with delimiter or you can add custom delimitter : '
-  input = gets.chomp
+  input = gets.chomp.gsub('\\n', "\n")
+
   begin
     result = StringCalculator.add(input)
     puts "Result: #{result}"
