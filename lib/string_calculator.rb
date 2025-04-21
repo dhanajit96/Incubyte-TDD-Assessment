@@ -12,8 +12,8 @@ class StringCalculator
 
       if numbers.start_with?('//')
         parts = numbers.split("\n", 2)
-        delimiter_definition = parts[0] # like "//;"
-        numbers = parts[1]              # "1;2"
+        delimiter_definition = parts[0] 
+        numbers = parts[1]
         custom_delimiter = Regexp.escape(delimiter_definition[2..])
         return [custom_delimiter, numbers]
       end

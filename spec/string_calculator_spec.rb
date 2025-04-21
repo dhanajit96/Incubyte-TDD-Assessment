@@ -27,6 +27,22 @@ RSpec.describe StringCalculator do
       it 'returns sum using ; as delimiter' do
         expect(StringCalculator.add("//;\n1;2")).to eq(3)
       end
+
+      it 'returns sum using | as delimiter' do
+        expect(StringCalculator.add("//|\n4|5|6")).to eq(15)
+      end
+
+      it 'returns sum using # as delimiter' do
+        expect(StringCalculator.add("//#\n10#20#30")).to eq(60)
+      end
+
+      it 'returns sum using a special character like * as delimiter' do
+        expect(StringCalculator.add("//*\n2*3*4")).to eq(9)
+      end
+
+      it 'returns 0 for empty string after custom delimiter' do
+        expect(StringCalculator.add("//;\n")).to eq(0)
+      end
     end
   end
 end
