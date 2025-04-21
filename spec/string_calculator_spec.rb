@@ -43,6 +43,22 @@ RSpec.describe StringCalculator do
       it 'returns 0 for empty string after custom delimiter' do
         expect(StringCalculator.add("//;\n")).to eq(0)
       end
+
+      it 'returns 0 for empty string after custom delimiter' do
+        expect(StringCalculator.add("//***\n1***2***3")).to eq(6)
+      end
+    end
+  end
+
+  describe '.extract_delimiter_and_numbers' do
+    it 'extracts custom delimiter and number string' do
+      result = StringCalculator.send(:extract_delimiter_and_numbers, "//;\n1;2")
+      expect(result).to eq([';', '1;2'])
+    end
+
+    it 'returns default delimiters and numbers if no custom delimiter' do
+      result = StringCalculator.send(:extract_delimiter_and_numbers, "1,2\n3")
+      expect(result).to eq([/,|\\n/, "1,2\n3"])
     end
   end
 end
