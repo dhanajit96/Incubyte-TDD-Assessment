@@ -1,2 +1,3 @@
-# Incubyte-TDD-Assessment
-This assignment for checking TTD approch 
+### This is TDD Assignment for Incubyte
+This is a console application for implementing the add method 
+
