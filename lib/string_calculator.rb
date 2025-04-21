@@ -30,7 +30,7 @@ end
 
 # console application
 if __FILE__ == $0
-  puts 'Enter numbers with delimiter : '
+  puts 'Enter numbers with delimiter or you can add custom delimitter : '
   input = gets.chomp
   begin
     result = StringCalculator.add(input)
