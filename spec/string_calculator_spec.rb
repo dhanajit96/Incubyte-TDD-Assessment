@@ -16,10 +16,16 @@ RSpec.describe StringCalculator do
       end
     end
 
-    context 'input is two digits number separted by delimiter (comma to \n)' do
+    context 'input is two digits number separted by default delimiter (comma to \n)' do
       it 'returns Sum of two number is provided' do
         expect(StringCalculator.add('5,5')).to eq(10)
         expect(StringCalculator.add('5\n15')).to eq(20)
+      end
+    end
+
+    context 'when custom delimiter is provided' do
+      it 'returns sum using ; as delimiter' do
+        expect(StringCalculator.add("//;\n1;2")).to eq(3)
       end
     end
   end

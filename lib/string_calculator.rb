@@ -1,11 +1,25 @@
 class StringCalculator
-  def self.add(numbers)
-    return 0 if numbers.empty?
+  class << self
+    def add(numbers)
+      return 0 if numbers.empty?
 
-    # below are default delimiter
-    delimiter = /,|\\n/
+      delimiter, numbers = extract_delimiter_and_numbers(numbers)
+      numbers.split(/#{delimiter}/).map(&:to_i).sum
+    end
 
-    numbers.split(delimiter).map(&:to_i).sum
+    def extract_delimiter_and_numbers(numbers)
+      default_delimiter = /,|\\n/
+
+      if numbers.start_with?('//')
+        parts = numbers.split("\n", 2)
+        delimiter_definition = parts[0] # like "//;"
+        numbers = parts[1]              # "1;2"
+        custom_delimiter = Regexp.escape(delimiter_definition[2..])
+        return [custom_delimiter, numbers]
+      end
+
+      [default_delimiter, numbers]
+    end
   end
 end
 
