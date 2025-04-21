@@ -12,6 +12,7 @@ RSpec.describe StringCalculator do
     context 'If input is single number string' do
       it 'Sum will returns same number' do
         expect(StringCalculator.add('5')).to eq(5)
+        expect(StringCalculator.add('25')).to eq(25)
       end
     end
 
