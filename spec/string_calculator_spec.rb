@@ -48,6 +48,26 @@ RSpec.describe StringCalculator do
         expect(StringCalculator.add("//***\n1***2***3")).to eq(6)
       end
     end
+
+    context 'when input contains negative numbers' do
+      it 'raises an exception with one negative number' do
+        expect do
+          StringCalculator.add('1,-2,3')
+        end.to raise_error(ArgumentError, 'negative numbers not allowed: -2')
+      end
+
+      it 'raises an exception with multiple negative numbers' do
+        expect do
+          StringCalculator.add('1,-2,-5,4')
+        end.to raise_error(ArgumentError, 'negative numbers not allowed: -2, -5')
+      end
+
+      it 'raises error with custom delimiter' do
+        expect do
+          StringCalculator.add("//;\n1;-3;4;-6")
+        end.to raise_error(ArgumentError, 'negative numbers not allowed: -3, -6')
+      end
+    end
   end
 
   describe '.extract_delimiter_and_numbers' do
